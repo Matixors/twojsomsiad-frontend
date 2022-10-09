@@ -1,7 +1,9 @@
+import HelloWorld from "./components/hello-world/hello-world.component"
+
 export default function App() {
   return (
     <>
-      <div>Hello World!</div>
+      <HelloWorld />
     </>
   )
 }
