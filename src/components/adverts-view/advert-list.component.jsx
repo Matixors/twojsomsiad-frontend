@@ -32,7 +32,7 @@ export default function List(props) {
 const { data } = props;
 
   return (
-    <Card sx={{ width: "80%", height: "auto", marginTop:"1%", marginLeft: "10%", marginRight: "10%" }}>
+    <Card sx={{ width: "80%", height: "auto", marginBottom:"1%", marginLeft: "10%", marginRight: "10%" }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
