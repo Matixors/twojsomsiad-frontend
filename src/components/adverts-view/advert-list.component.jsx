@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import { red } from '@mui/material/colors';
+import { lightBlue, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
@@ -29,35 +29,37 @@ export default function List(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-const { data } = props;
+const { data, svg } = props;
 
   return (
     <Card sx={{ width: "80%", height: "auto", marginBottom:"1%", marginLeft: "10%", marginRight: "10%" }}>
       <CardHeader
         avatar={
-          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            {data.name[0]}
+          <Avatar sx={{ bgcolor: lightBlue[500] }} aria-label="recipe">
+            <span dangerouslySetInnerHTML={{__html: svg}}>
+            </span>
+
           </Avatar>
         }
         action={
-            <span style={{marginRight: "3vw",  color:"grey", fontSize: "1.2em"}}>
+          <span style={{marginRight: "3vw",  color:"grey", fontSize: "1.2em"}}>
             12.11 godzina 13:30
             </span>
         }
         title = {
-            <>
+          <>
             <span>
             {data.name} 
             </span>
-            <div style={{marginLeft: "20vw", fontSize: "2em", textAlign: "center", color: "grey", fontWeight: "500", position: "absolute", marginTop: "50px"}}>{data.website}</div>
             </>
         }
         subheader="September 14, 2016"
-      />
+        />
       <CardContent>
+        <div style={{marginLeft: "20vw", fontSize: "2em", textAlign: "center", color: "grey", fontWeight: "500", position: "absolute", marginTop: "-1.5%"}}>{data.website} to imie psa z którym trzeba wyjść</div>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" sx = {{color: "red", cursor: "context-menu", fontSize: "1em", marginBottom: "2vh", marginLeft: "2vh"}}>
+        <IconButton aria-label="add to favorites" sx = {{color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh"}}>
           <FavoriteIcon />  200 punków pomocy
         </IconButton>
         <ExpandMore
@@ -65,7 +67,7 @@ const { data } = props;
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
-        >
+          >
           <ExpandMoreIcon />
         </ExpandMore>
       </CardActions>
@@ -76,5 +78,6 @@ const { data } = props;
         </CardContent>
       </Collapse>
     </Card>
+          </>
   );
 }
