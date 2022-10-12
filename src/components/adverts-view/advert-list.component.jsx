@@ -78,6 +78,5 @@ const { data, svg } = props;
         </CardContent>
       </Collapse>
     </Card>
-          </>
   );
 }
