@@ -17,7 +17,6 @@ export default function App() {
 
   return (
     <div className="App">
-      < span className={styles.fl}>
       <Sidebar />
       <img src="logo.svg" alt="super logo" />
       {data.map((user, index) => {
@@ -34,7 +33,6 @@ export default function App() {
         }
         )
       }
-      </span>
     </div>
   )
 }
