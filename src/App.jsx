@@ -18,6 +18,7 @@ export default function App() {
   return (
     <div className="App">
       <Sidebar />
+      <img src="logo.svg" alt="super logo" />
       {data.map((user, index) => {
         let rand = Math.random()
         rand = rand.toString()
@@ -26,12 +27,12 @@ export default function App() {
           scale: 30,
           size: 100,
         });
-                return (
-                    <List key={index} data={user} svg={svg} />
-                    )
-                }
-              )
-            }
+        return (
+          <List key={index} data={user} svg={svg} />
+          )
+        }
+        )
+      }
     </div>
   )
 }
