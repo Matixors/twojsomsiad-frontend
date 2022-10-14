@@ -1,14 +1,15 @@
 .sidenav {
-    width: 22vmin;
+    background-color: white;
+    width: 25vmin;
     transition: width 0.4s ease-in-out;
     height: 100%;
-    background-color: rgb(237, 240, 245);
     padding-top: 28px;
     position: absolute;
     height: 250vh;
     margin-top: 0;
     z-index: 1;
     overflow: hidden;
+    border-right: solid rgb(167, 167, 167) 0.25vmin;
 }
 
 .logo{

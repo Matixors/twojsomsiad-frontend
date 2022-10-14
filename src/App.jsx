@@ -3,6 +3,7 @@ import Register from "./pages/register/register.pages";
 import Dashboard from "./pages/dashboard/dashboard.pages";
 import Home from "./pages/home-page/home.pages";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import * as styles from './styles/App.module.scss';
 
 export default function App() {
   return (
