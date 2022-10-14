@@ -7,25 +7,25 @@ export const navData = [
     {
         id: 0,
         icon: <HomeIcon/>,
-        text: "Home",
+        text: "Strona główna",
         link: "/"
     },
     {
         id: 1,
         icon: <TravelExploreIcon/>,
-        text: "Dashboard",
+        text: "Panel ogłoszeń",
         link: "dashboard"
     },
     {
         id: 2,
         icon: <BarChartIcon/>,
-        text: "Login",
+        text: "Logowanie",
         link: "login"
     },
     {
         id: 3,
         icon: <SettingsIcon/>,
-        text: "Register",
+        text: "Rejestracja",
         link: "register"
     }
 ]

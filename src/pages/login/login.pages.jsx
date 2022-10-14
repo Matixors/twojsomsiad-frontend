@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as styles from '../../styles/Login.module.scss';
 
@@ -55,7 +56,6 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Logowanie
             </Typography>
-            <img src="../../../logo.svg" alt="super logo" className={styles.logo}/>
             <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
@@ -87,14 +87,18 @@ export default function Login() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/" variant="body2">
-                    Powrót do strony głównej
-                  </Link>
+                  <NavLink to="/">
+                    <Link variant="body2">
+                      Powrót do strony głównej
+                    </Link>
+                  </NavLink>
                 </Grid>
                 <Grid item>
-                  <Link href="/register" variant="body2">
-                    {"Nie masz konta? Zarejestruj się"}
-                  </Link>
+                  <NavLink to="/register">
+                    <Link variant="body2">
+                      Masz już konto? Zarejestruj się
+                    </Link>
+                  </NavLink>
                 </Grid>
               </Grid>
             </Box>
