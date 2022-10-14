@@ -13,19 +13,19 @@ export const navData = [
     {
         id: 1,
         icon: <TravelExploreIcon/>,
-        text: "Explore",
-        link: "explore"
+        text: "Dashboard",
+        link: "dashboard"
     },
     {
         id: 2,
         icon: <BarChartIcon/>,
-        text: "Statistics",
-        link: "statistics"
+        text: "Login",
+        link: "login"
     },
     {
         id: 3,
         icon: <SettingsIcon/>,
-        text: "Settings",
-        link: "settings"
+        text: "Register",
+        link: "register"
     }
 ]
