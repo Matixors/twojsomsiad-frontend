@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -31,12 +32,20 @@ export default function Register() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    const options = {
+      method: 'POST',
+      url: 'https://twojsomsiad-backend.onrender.com/auth/register',
+      headers: {'Content-Type': 'application/json'},
+      data: {username: data.get("userName"), name: data.get("firstName"), surname: data.get("lastName"),email:data.get("email"),password: data.get("password")}
+    };
+    
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
     });
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -48,7 +57,7 @@ export default function Register() {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-        >
+          >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -76,6 +85,16 @@ export default function Register() {
                   label="Nazwisko"
                   name="lastName"
                   autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12} >
+                <TextField
+                  required
+                  fullWidth
+                  id="userName"
+                  label="Pseudonim"
+                  name="userName"
+                  autoComplete="your-username"
                 />
               </Grid>
               <Grid item xs={12}>
