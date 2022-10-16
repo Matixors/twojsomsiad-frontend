@@ -14,18 +14,18 @@ export const navData = [
         id: 1,
         icon: <TravelExploreIcon/>,
         text: "Panel ogłoszeń",
-        link: "dashboard"
+        link: "/dashboard"
     },
     {
         id: 2,
         icon: <BarChartIcon/>,
         text: "Logowanie",
-        link: "login"
+        link: "/login"
     },
     {
         id: 3,
         icon: <SettingsIcon/>,
         text: "Rejestracja",
-        link: "register"
+        link: "/register"
     }
 ]
