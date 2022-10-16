@@ -4,6 +4,8 @@ import { createAvatar } from '@dicebear/avatars';
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import * as style from '@dicebear/pixel-art';
+import AddAdvert from '../../components/add-advert-form/add-advert.component';
+
 
 export default function Home(){
     const [data, setData] = useState([]);
@@ -32,6 +34,7 @@ export default function Home(){
             }
             )
             }
+            <AddAdvert/>
         </div>
     )
 }
