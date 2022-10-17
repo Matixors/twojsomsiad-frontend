@@ -15,11 +15,11 @@ import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../lib/listItems';
+import Button from '@mui/material/Button';
 import * as styles from '../../styles/Dashboard.module.scss';
 
 export default function Dashboard(){
@@ -70,6 +70,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+const [clicked, setClick] = React.useState(false);
+
+
 const mdTheme = createTheme();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -115,6 +118,8 @@ const mdTheme = createTheme();
                     </IconButton>
                   </Toolbar>
                 </AppBar>
+
+
                 <Drawer variant="permanent" open={open}>
                   <Toolbar
                     sx={{
@@ -135,6 +140,8 @@ const mdTheme = createTheme();
                     {secondaryListItems}
                   </List>
                 </Drawer>
+
+
                 <Box
                   component="main"
                   sx={{
@@ -176,15 +183,16 @@ const mdTheme = createTheme();
                       </Grid>
                       {/* Recent Orders */}
                       <Grid item xs={12}>
-                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        </Paper>
+                      <Button onClick={() => {
+                        setClick(!clicked);
+                         }} variant="outlined" sx={{ }}>Nowe ogłoszenie</Button>
+                      {clicked ? (<Grid item xs={5} md={6} lg={7}><Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 500, marginTop: "2vh"  }}> <AddAdvert /></Paper></Grid>) : ''}
                       </Grid>
                     </Grid>
                   </Container>
                 </Box>
               </Box>
             </ThemeProvider>
-            <AddAdvert />
         </div>
     )
 }
