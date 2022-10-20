@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { emailRegex } from '../../lib/common-regex';
 import axios from "axios";
 
 function Copyright(props) {
@@ -40,9 +41,13 @@ export default function Register() {
     };
     
     axios.request(options).then(function (response) {
-      console.log(response.data);
+      if(response.status == 200){
+        window.location = '/'
+      }else{
+        alert("Błąd: " + response.status)
+      }
     }).catch(function (error) {
-      console.error(error);
+      alert("Błąd: " + error.message)
     });
   };
   
@@ -105,6 +110,7 @@ export default function Register() {
                   label="Adres email"
                   name="email"
                   autoComplete="email"
+                  inputProps={{ pattern: emailRegex }}
                 />
               </Grid>
               <Grid item xs={12}>

@@ -99,7 +99,7 @@ export default function Dashboard() {
                 aria-label="open drawer"
                 onClick={toggleDrawer}
                 sx={{
-                  marginRight: '36px',
+                  marginRight: '2vw',
                   ...(!open && { display: 'none' }),
                 }}
               >

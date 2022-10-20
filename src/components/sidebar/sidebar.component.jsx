@@ -87,7 +87,7 @@ export default function Sidebar() {
                                 aria-label="open drawer"
                                 onClick={toggleDrawer}
                                 sx={{
-                                    marginRight: '36px',
+                                    marginRight: '2vw',
                                     ...(!open && { display: 'none' }),
                                 }}
                             >
