@@ -57,7 +57,7 @@ export default function List(props) {
           subheader="14 Wrzesień 2016"
         />
         <CardContent>
-          <div style={{ marginLeft: "20vw", fontSize: "3vmin", textAlign: "center", color: "grey", fontWeight: "500", position: "absolute", marginTop: "-1.5%" }}>{data.website} to imie psa z którym trzeba wyjść</div>
+          {data.website} to imie psa z którym trzeba wyjść
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
