@@ -105,7 +105,7 @@ export default function Login() {
               <Grid item>
                 <NavLink to="/register">
                   <Link variant="body2">
-                    Masz już konto? Zarejestruj się
+                    Nie masz konta? Zarejestruj się
                   </Link>
                 </NavLink>
               </Grid>

@@ -11,39 +11,43 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import { NavLink } from 'react-router-dom';
+import * as styles from '../styles/Sidebar-items.module.scss';
 
 export const mainListItems = (
   <React.Fragment>
-    <ListItemButton>
-      <ListItemIcon>
-        <HomeIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Strona główna" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Panel ogłoszeń" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AccountCircleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Logowanie" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <HowToRegIcon />
-      </ListItemIcon>
-      <ListItemText primary="Rejesteracja" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItemButton>
+    <NavLink to="/" className={styles.link}>
+      <ListItemButton>
+        <ListItemIcon>
+          <HomeIcon />
+        </ListItemIcon>
+        <ListItemText primary="Strona główna"/>
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/dashboard" className={styles.link}>
+      <ListItemButton>
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Panel ogłoszeń" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/login" className={styles.link}>
+      <ListItemButton>
+        <ListItemIcon>
+          <AccountCircleIcon />
+        </ListItemIcon>
+        <ListItemText primary="Logowanie" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/register" className={styles.link}>
+      <ListItemButton>
+        <ListItemIcon>
+          <HowToRegIcon />
+        </ListItemIcon>
+        <ListItemText primary="Rejesteracja" />
+      </ListItemButton>
+    </NavLink>
   </React.Fragment>
 );
 
@@ -63,12 +67,6 @@ export const secondaryListItems = (
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Last quarter" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
     </ListItemButton>
   </React.Fragment>
 );
