@@ -19,8 +19,8 @@ export default function Home() {
 
   return (
     <div>
-      <Sidebar className={styles.sidebar} />
-      <div className={styles.adverts}>
+      <Sidebar/>
+      <div className={styles.advertsBody}>
         {data.map((user, index) => {
           let rand = Math.random()
           rand = rand.toString()

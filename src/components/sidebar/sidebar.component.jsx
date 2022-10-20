@@ -75,7 +75,7 @@ export default function Sidebar() {
             <ThemeProvider theme={mdTheme}>
                 <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                    <AppBar position="absolute" open={open}>
+                    <AppBar position="absolute" open={!open}>
                         <Toolbar
                             sx={{
                                 pr: '24px', // keep right padding when drawer closed
@@ -88,7 +88,7 @@ export default function Sidebar() {
                                 onClick={toggleDrawer}
                                 sx={{
                                     marginRight: '36px',
-                                    ...(open && { display: 'none' }),
+                                    ...(!open && { display: 'none' }),
                                 }}
                             >
                                 <MenuIcon />
@@ -100,7 +100,7 @@ export default function Sidebar() {
                                 noWrap
                                 sx={{ flexGrow: 1 }}
                             >
-                                Dashboard
+                                Strona główna
                             </Typography>
                             <IconButton color="inherit">
                                 <Badge badgeContent={4} color="secondary">

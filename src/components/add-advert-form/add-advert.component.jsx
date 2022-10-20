@@ -19,7 +19,7 @@ import Select from '@mui/material/Select';
 
 const theme = createTheme();
 
-export default function AddAdvert() {
+export default function AddAdvert({onClickBtn}) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -34,11 +34,11 @@ export default function AddAdvert() {
     setCity(event.target.value);
   };
   var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
 
-today = yyyy + '-' + mm + '-' + dd;
+  today = yyyy + '-' + mm + '-' + dd;
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -68,43 +68,43 @@ today = yyyy + '-' + mm + '-' + dd;
               autoComplete="title"
               autoFocus
             />
-                  <FormControl sx={{ minWidth: 150, margin: 2 }}>
+            <FormControl sx={{ minWidth: 150, margin: 2 }}>
 
-            <InputLabel id="demo-simple-select-label">Miasto</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={city}
-          label="Miasto"
-          onChange={handleChange}
-        >
-          <MenuItem value={"Nowy Sącz"}>Nowy Sącz</MenuItem>
-          <MenuItem value={"Kraków"}>Kraków</MenuItem>
-          <MenuItem value={"Warszawa"}>Warszawa</MenuItem>
-        </Select>
-        </FormControl>
-        <TextField
-        margin="normal"
-        id="date"
-        label="Kiedy"
-        type="date"
-        defaultValue = {today}
-        sx={{ marginLeft:4}}
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-        <TextField
-        autoComplete="description"
-          fullWidth
-          id="outlined-multiline-flexible"
-          label="Opisz swoją potrzebę"
-          name="description"
-          multiline
-          maxRows={4}
-        />
-        
-            <Button
+              <InputLabel id="demo-simple-select-label">Miasto</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={city}
+                label="Miasto"
+                onChange={handleChange}
+              >
+                <MenuItem value={"Nowy Sącz"}>Nowy Sącz</MenuItem>
+                <MenuItem value={"Kraków"}>Kraków</MenuItem>
+                <MenuItem value={"Warszawa"}>Warszawa</MenuItem>
+              </Select>
+            </FormControl>
+            <TextField
+              margin="normal"
+              id="date"
+              label="Kiedy"
+              type="date"
+              defaultValue={today}
+              sx={{ marginLeft: 4 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              autoComplete="description"
+              fullWidth
+              id="outlined-multiline-flexible"
+              label="Opisz swoją potrzebę"
+              name="description"
+              multiline
+              maxRows={4}
+            />
+
+            <Button onClick={onClickBtn}
               type="submit"
               fullWidth
               variant="contained"
@@ -112,7 +112,7 @@ today = yyyy + '-' + mm + '-' + dd;
             >
               Wyślij ogłoszenie
             </Button>
-            
+
           </Box>
         </Box>
       </Container>

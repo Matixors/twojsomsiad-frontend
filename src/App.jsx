@@ -4,10 +4,19 @@ import Dashboard from "./pages/dashboard/dashboard.pages";
 import Home from "./pages/home-page/home.pages";
 import Error from "./pages/error-page/error.pages";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import * as styles from './styles/App.module.scss';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 export default function App() {
   return(
+    
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -19,5 +28,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    
   )
 }
