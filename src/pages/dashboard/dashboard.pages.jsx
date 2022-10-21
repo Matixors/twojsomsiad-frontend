@@ -1,4 +1,3 @@
-import * as React from 'react';
 import AddAdvert from '../../components/add-advert-form/add-advert.component';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,9 +19,22 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../lib/listItems';
 import Button from '@mui/material/Button';
 import * as styles from '../../styles/Dashboard.module.scss';
-
+import { createAvatar } from '@dicebear/avatars';
+import * as style from '@dicebear/pixel-art';
+import React, { useState } from 'react';
 export default function Dashboard() {
-
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  const logout = () => {
+    localStorage.setItem("token", "");
+    setToken(localStorage.getItem("token"));
+}
+  let rand = Math.random()
+  rand = rand.toString();
+  let svg = createAvatar(style, {
+    seed: rand,
+    scale: 30,
+    size: 160,
+  });
   const drawerWidth = 240;
 
   const AppBar = styled(MuiAppBar, {
@@ -73,7 +85,7 @@ export default function Dashboard() {
   const [advertView, setAdvertView] = React.useState(true);
   const changeAdvertView = () => {
     setAdvertView(false)
-    setClick(!clicked)
+    
   }
 
   const mdTheme = createTheme();
@@ -114,11 +126,13 @@ export default function Dashboard() {
               >
                 Panel ogłoszeń
               </Typography>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              {(token != "")?
+                            <>
+                             <span style={{ height: "5vh", marginTop: "-8vh"}} dangerouslySetInnerHTML={{ __html: svg }}>
+                                </span>
+                             <Button variant="outlined" sx={{color: "white"}} onClick={logout} >Wyloguj się</Button> 
+                            </>
+                              : ""}
             </Toolbar>
           </AppBar>
 

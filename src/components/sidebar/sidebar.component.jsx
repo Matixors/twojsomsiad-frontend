@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
@@ -15,8 +14,27 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../lib/listItems';
 import * as styles from '../../styles/Sidebar.module.scss';
+import Button from '@mui/material/Button';
+import { createAvatar } from '@dicebear/avatars';
+import * as style from '@dicebear/pixel-art';
+import React, { useState } from 'react';
+
 
 export default function Sidebar() {
+    const [token, setToken] = useState(localStorage.getItem("token"));
+
+    const logout = () => {
+        localStorage.setItem("token", "");
+        setToken(localStorage.getItem("token"));
+    }
+
+    let rand = Math.random()
+          rand = rand.toString();
+          let svg = createAvatar(style, {
+            seed: rand,
+            scale: 30,
+            size: 160,
+          });
 
     const drawerWidth = 240;
 
@@ -100,13 +118,17 @@ export default function Sidebar() {
                                 noWrap
                                 sx={{ flexGrow: 1 }}
                             >
+                                
                                 Strona główna
                             </Typography>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={4} color="secondary">
-                                    <NotificationsIcon />
-                                </Badge>
-                            </IconButton>
+                            
+                            {(token != "")?
+                            <>
+                             <span style={{ height: "5vh", marginTop: "-8vh"}} dangerouslySetInnerHTML={{ __html: svg }}>
+                                </span>
+                             <Button variant="outlined" sx={{color: "white"}} onClick={logout} >Wyloguj się</Button> 
+                            </>
+                              : ""}
                         </Toolbar>
                     </AppBar>
 
