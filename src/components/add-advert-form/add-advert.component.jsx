@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,11 +15,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import React, { useState } from 'react';
 
 const theme = createTheme();
 
 export default function AddAdvert({onClickBtn}) {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
   const handleSubmit = (event) => {
+    if (!(token != "")){
+      window.location = '/login/';
+    }
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({

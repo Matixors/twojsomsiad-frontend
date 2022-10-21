@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,38 +12,42 @@ import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as styles from '../../styles/Login.module.scss';
 import axios from "axios";
+import React, { useState } from 'react';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Youiter Webs
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
 
 const theme = createTheme();
 
 export default function Login() {
+  const [text, setText] = useState("mihou2@cms.com");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const options = {
-      method: 'POST',
-      url: 'https://twojsomsiad-backend.onrender.com/auth/login',
-      headers: { 'Content-Type': 'application/json' },
-      data: {email: data.get('email'),	password: data.get('password')}
-    };
-
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
-      console.error(error);
-    });
+    setText(data.get('email'));
+    if(data.get('email').match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)){
+      const options = {
+        method: 'POST',
+        url: 'https://twojsomsiad-backend.onrender.com/auth/login',
+        headers: { 'Content-Type': 'application/json' },
+        data: {email: data.get('email'),	password: data.get('password')}
+      };
+      
+      axios.request(options).then(function (response) {
+        
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        let x = localStorage.getItem("token");
+        if (response.status == 200){
+          window.location = '/';
+        }
+        else {
+          alert("Nie udało się zalogować");
+        }
+      }).catch(function (error) {
+        alert("Nie udało się zalogować wystąpił błąd, " + error);
+      });
+      
+    }
   };
 
   return (
@@ -75,6 +78,8 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              error = {!text.match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)}
+              helperText={!text.match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm) ? 'Niepoprawny adres email!' : ' '}
             />
             <TextField
               margin="normal"
