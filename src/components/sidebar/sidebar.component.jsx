@@ -32,8 +32,8 @@ export default function Sidebar() {
           rand = rand.toString();
           let svg = createAvatar(style, {
             seed: rand,
-            scale: 30,
-            size: 160,
+            scale: 100,
+            size: 50,
           });
 
     const drawerWidth = 240;
@@ -124,7 +124,7 @@ export default function Sidebar() {
                             
                             {(token != "")?
                             <>
-                             <span style={{ height: "5vh", marginTop: "-8vh"}} dangerouslySetInnerHTML={{ __html: svg }}>
+                             <span style={{ marginTop: "0"}} dangerouslySetInnerHTML={{ __html: svg }}>
                                 </span>
                              <Button variant="outlined" sx={{color: "white"}} onClick={logout} >Wyloguj się</Button> 
                             </>

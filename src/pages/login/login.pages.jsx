@@ -34,9 +34,7 @@ export default function Login() {
       };
       
       axios.request(options).then(function (response) {
-        
         localStorage.setItem('token', JSON.stringify(response.data.token));
-        let x = localStorage.getItem("token");
         if (response.status == 200){
           window.location = '/';
         }
@@ -46,7 +44,6 @@ export default function Login() {
       }).catch(function (error) {
         alert("Nie udało się zalogować wystąpił błąd, " + error);
       });
-      
     }
   };
 

@@ -22,18 +22,19 @@ import * as styles from '../../styles/Dashboard.module.scss';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
+
 export default function Dashboard() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const logout = () => {
     localStorage.setItem("token", "");
     setToken(localStorage.getItem("token"));
-}
+  }
   let rand = Math.random()
   rand = rand.toString();
   let svg = createAvatar(style, {
     seed: rand,
-    scale: 30,
-    size: 160,
+    scale: 100,
+    size: 50,
   });
   const drawerWidth = 240;
 
@@ -85,7 +86,7 @@ export default function Dashboard() {
   const [advertView, setAdvertView] = React.useState(true);
   const changeAdvertView = () => {
     setAdvertView(false)
-    
+
   }
 
   const mdTheme = createTheme();
@@ -126,13 +127,13 @@ export default function Dashboard() {
               >
                 Panel ogłoszeń
               </Typography>
-              {(token != "")?
-                            <>
-                             <span style={{ height: "5vh", marginTop: "-8vh"}} dangerouslySetInnerHTML={{ __html: svg }}>
-                                </span>
-                             <Button variant="outlined" sx={{color: "white"}} onClick={logout} >Wyloguj się</Button> 
-                            </>
-                              : ""}
+              {(token != "") ?
+                <>
+                  <div style={{ marginTop: "0" }} dangerouslySetInnerHTML={{ __html: svg }}>
+                  </div>
+                  <Button variant="outlined" sx={{ color: "white" }} onClick={logout} >Wyloguj się</Button>
+                </>
+                : ""}
             </Toolbar>
           </AppBar>
 
@@ -172,29 +173,29 @@ export default function Dashboard() {
             <Toolbar />
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
               <Grid container spacing={3}>
-                  <Grid item xs={12} md={8} lg={35}>
-                    <Paper
-                      sx={{
-                        p: 2,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: 260,
-                      }}
-                    >{advertView ?
-                      (<>
-                        <Typography gutterBottom variant="h3" sx={{ padding: 2 }}>
-                          Tutaj będą wyświetlone twoje ogłoszenia
-                        </Typography>
-                        <Typography gutterBottom variant="h4" sx={{ padding: 2 }}>
-                          Wciśnij przycisk poniżej aby dodać pierwsze ogłoszenie
-                        </Typography>
-                      </>)
-                       : 
-                       <Typography gutterBottom variant="h2" sx={{ padding: 2 }}>
-                          Ogłoszenie
-                        </Typography>}
-                    </Paper>
-                  </Grid>
+                <Grid item xs={12} md={8} lg={35}>
+                  <Paper
+                    sx={{
+                      p: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: 260,
+                    }}
+                  >{advertView ?
+                    (<>
+                      <Typography gutterBottom variant="h3" sx={{ padding: 2 }}>
+                        Tutaj będą wyświetlone twoje ogłoszenia
+                      </Typography>
+                      <Typography gutterBottom variant="h4" sx={{ padding: 2 }}>
+                        Wciśnij przycisk poniżej aby dodać pierwsze ogłoszenie
+                      </Typography>
+                    </>)
+                    :
+                    <Typography gutterBottom variant="h2" sx={{ padding: 2 }}>
+                      Ogłoszenie
+                    </Typography>}
+                  </Paper>
+                </Grid>
                 <Grid item xs={12}>
                   <Button onClick={() => {
                     setClick(!clicked);
@@ -203,7 +204,22 @@ export default function Dashboard() {
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 500, marginTop: "2vh" }}>
                       <AddAdvert onClickBtn={changeAdvertView} />
                     </Paper>
-                  </Grid>) : ''}
+                  </Grid>) : <Paper
+                    sx={{
+                      p: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: 260,
+                      marginTop: "3vh"
+                    }}
+                  >
+                    <>
+                      <Typography gutterBottom variant="h2" sx={{ padding: 2 }}>
+                        Tutaj będą wyświetlone ogłoszenia, które przyjąłeś
+                      </Typography>
+                    </>
+                  </Paper>
+                  }
                 </Grid>
               </Grid>
             </Container>

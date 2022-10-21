@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,8 +10,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { emailRegex } from '../../lib/common-regex';
 import axios from "axios";
+import React, { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -30,27 +29,32 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
+  const [text, setText] = useState("mihou2@cms.com");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const options = {
-      method: 'POST',
-      url: 'https://twojsomsiad-backend.onrender.com/auth/register',
-      headers: {'Content-Type': 'application/json'},
-      data: {username: data.get("userName"), name: data.get("firstName"), surname: data.get("lastName"),email:data.get("email"),password: data.get("password")}
-    };
-    
-    axios.request(options).then(function (response) {
-      if(response.status == 200){
-        window.location = '/'
-      }else{
-        alert("Błąd: " + response.status)
-      }
-    }).catch(function (error) {
-      alert("Błąd: " + error.message)
-    });
+    setText(data.get('email'));
+    if (data.get('email').match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)) {
+      const options = {
+        method: 'POST',
+        url: 'https://twojsomsiad-backend.onrender.com/auth/register',
+        headers: { 'Content-Type': 'application/json' },
+        data: { username: data.get("userName"), name: data.get("firstName"), surname: data.get("lastName"), email: data.get("email"), password: data.get("password") }
+      };
+
+      axios.request(options).then(function (response) {
+        if (response.status == 200) {
+          window.location = '/'
+        } else {
+          alert("Błąd: " + response.status)
+        }
+      }).catch(function (error) {
+        alert("Błąd: " + error.message)
+      });
+    }
   };
-  
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -62,7 +66,7 @@ export default function Register() {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-          >
+        >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
@@ -110,7 +114,8 @@ export default function Register() {
                   label="Adres email"
                   name="email"
                   autoComplete="email"
-                  inputProps={{ pattern: emailRegex }}
+                  error={!text.match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)}
+                  helperText={!text.match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm) ? 'Niepoprawny adres email!' : ' '}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -134,18 +139,18 @@ export default function Register() {
               Zarejestruj się
             </Button>
             <Grid container justifyContent="flex-end">
-            <Grid item xs>
+              <Grid item xs>
                 <NavLink to="/">
-                    <Link variant="body2">
-                      Powrót do strony głównej
-                    </Link>
+                  <Link variant="body2">
+                    Powrót do strony głównej
+                  </Link>
                 </NavLink>
-                </Grid>
+              </Grid>
               <Grid item>
                 <NavLink to="/login">
-                    <Link href="/login" variant="body2">
-                      Masz już konto? Zaloguj się
-                    </Link>
+                  <Link href="/login" variant="body2">
+                    Masz już konto? Zaloguj się
+                  </Link>
                 </NavLink>
               </Grid>
             </Grid>

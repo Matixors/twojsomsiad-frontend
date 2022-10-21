@@ -3,6 +3,7 @@ import Register from "./pages/register/register.pages";
 import Dashboard from "./pages/dashboard/dashboard.pages";
 import Home from "./pages/home-page/home.pages";
 import Error from "./pages/error-page/error.pages";
+import Profile from "./pages/profile/profile.pages";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile/>}/>
           <Route path="*" element={<Error/>} />
         </Routes>
       </BrowserRouter>
