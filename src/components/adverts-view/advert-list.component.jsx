@@ -29,7 +29,12 @@ export default function List(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const { data, svg } = props;
+  const { data, svg, token } = props;
+  const handleVolounteer = () => {
+    if (!(token != "")){
+      window.location = '/login/';
+    }
+  }
 
   return (
     <div>
@@ -75,7 +80,7 @@ export default function List(props) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             Super opis w którym Adam Małysz opowiada jaki to on jest biedny i nie stać go żeby iść z psem na spacer. Śmiechu warte, jeszcze jakieś ogłoszenia pisze.
-            <Button variant="outlined" sx={{ float: "right", margin: "1%" }}>Zgłoś się</Button>
+            <Button variant="outlined" sx={{ float: "right", margin: "1%" }} onClick={handleVolounteer}>Zgłoś się</Button>
           </CardContent>
         </Collapse>
       </Card>

@@ -28,6 +28,7 @@ export default function Dashboard() {
   const logout = () => {
     localStorage.setItem("token", "");
     setToken(localStorage.getItem("token"));
+    window.location = "/";
   }
   let rand = Math.random()
   rand = rand.toString();
