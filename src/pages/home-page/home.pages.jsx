@@ -9,12 +9,29 @@ import * as styles from '../../styles/Home.module.scss';
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
-
+  const options = {
+    method: 'POST',
+    url: 'https://twojsomsiad-backend.onrender.com/advert',
+    headers: { 'Content-Type': 'application/json' }
+  };
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/users').then(data => {
+   
+    axios.get('http://localhost:3000/advert').then(data => {
       setData(data.data);
     })
+/*
+axios.request(options).then(function (response) {
+  let adverts = JSON.stringify(response.data)
+        if (response.status == 200){
+          console.log(adverts);
+        }
+      }).catch(function (error) {
+        alert("Nie udało się zalogować wystąpił błąd, " + error);
+        console.log(adverts);
+      });
+*/
   }, []);
 
   return (
@@ -30,7 +47,7 @@ export default function Home() {
             size: 100,
           });
           return (
-            <List key={index} data={user} svg={svg} />
+            <List key={index} data={user} svg={svg} token={token} />
           )
         }
         )

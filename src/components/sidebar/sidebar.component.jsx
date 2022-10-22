@@ -26,6 +26,7 @@ export default function Sidebar() {
     const logout = () => {
         localStorage.setItem("token", "");
         setToken(localStorage.getItem("token"));
+        window.location = "/";
     }
 
     let rand = Math.random()

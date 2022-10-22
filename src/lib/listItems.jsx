@@ -11,6 +11,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import HomeIcon from '@mui/icons-material/Home';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { NavLink } from 'react-router-dom';
 import * as styles from '../styles/Sidebar-items.module.scss';
 
@@ -46,6 +47,14 @@ export const mainListItems = (
           <HowToRegIcon />
         </ListItemIcon>
         <ListItemText primary="Rejesteracja" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/profile" className={styles.link}>
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleAltIcon />
+        </ListItemIcon>
+        <ListItemText primary="Profil" />
       </ListItemButton>
     </NavLink>
   </React.Fragment>
