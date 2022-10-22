@@ -18,7 +18,7 @@ const darkTheme = createTheme({
 export default function App() {
   return(
     
-    <div className="App">
+    <div>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home/>}/>
