@@ -29,15 +29,25 @@ export default function Dashboard() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const options = {method: 'GET'};
+  const options = {method: 'GET',
+  headers: {
+    "Authorization": "Bearer " + token
+  },
+  mode: "no-cors"
+};
   useEffect(() => {
+    console.log(token);
     
+<<<<<<< Updated upstream
       fetch('https://twojsomsiad-backend.onrender.com/user/adverts', options)
+=======
+      fetch('http://twojsomsiad-backend.onrender.com/user/adverts', options)
+>>>>>>> Stashed changes
         .then(response => response.json())
         .then(response => {
-            setData(response);
+            setData(response.message);
         });
-        //.catch(err => console.error(err));
+        // .catch(err => console.error(err));
 
   }, []);
 

@@ -34,7 +34,7 @@ export default function Login() {
       };
       
       axios.request(options).then(function (response) {
-        localStorage.setItem('token', JSON.stringify(response.data.token));
+        localStorage.setItem('token', (response.data.token));
         if (response.status == 200){
           window.location = '/';
         }

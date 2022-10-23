@@ -20,30 +20,51 @@ import React, { useState } from 'react';
 const theme = createTheme();
 
 export default function AddAdvert({onClickBtn}) {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+  /*
   const options = {
     method: 'POST',
+    mode: "no-cors",
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY2Mzk1OTg1LCJpZCI6MSwib3JpZ19pYXQiOjE2NjYzOTIzODV9.gi2EwuuJvl94q6JUdQffE434Jdm-Cqo5zOqV1K0ENhQ'
+      Authorization: 'Bearer ' + token
     },
     body: {title:"Spacer z psem", description:"Proszę wyjść z moim psem Johnym na spacer w parku Zdrojowym na pół godziny i wrócić.", city:"Nowy Sącz", date:"2022-10-26T22:04:06.652069Z"}
   };
-  
-  
-  const [token, setToken] = useState(localStorage.getItem("token"));
-  
-  const handleSubmit = (event) => {
-    
-    fetch('http://twojsomsiad-backend.onrender.com/advert/', options)
+  */
+
+
+ 
+ const handleSubmit = (event) => {
+   /*
+   fetch('https://twojsomsiad-backend.onrender.com/advert', options)
+   .then(response => response.json())
+   .then(response => console.log(response))
+   .catch(err => console.error(err));
+   */
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+   const options = {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       Authorization: `Bearer ${token}`
+     },
+     body: {Title:data.get("title"),Description:data.get("description"),City:city, Date: data.get("date")}
+   };
+    console.log(options);
+    fetch('https://twojsomsiad-backend.onrender.com/advert/', options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
+    
+
+
+
 
     if (!(token != "")){
       window.location = '/login/';
     }
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
@@ -109,6 +130,7 @@ export default function AddAdvert({onClickBtn}) {
               id="date"
               label="Kiedy"
               type="date"
+              name="date"
               defaultValue={today}
               sx={{ marginLeft: 4 }}
               InputLabelProps={{
