@@ -11,7 +11,15 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const options = {method: 'GET'};
+  const options = 
+  {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    cors: 'no-cors'
+  };
   useEffect(() => {
       fetch('https://twojsomsiad-backend.onrender.com/advert', options)
         .then(response => response.json())

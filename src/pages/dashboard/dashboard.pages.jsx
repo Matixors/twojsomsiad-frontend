@@ -29,23 +29,19 @@ export default function Dashboard() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const options = {method: 'GET',
-  headers: {
-    "Authorization": "Bearer " + token
-  },
-  mode: "no-cors"
-};
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+  };
   useEffect(() => {
-    console.log(token);
-    
-<<<<<<< Updated upstream
       fetch('https://twojsomsiad-backend.onrender.com/user/adverts', options)
-=======
-      fetch('http://twojsomsiad-backend.onrender.com/user/adverts', options)
->>>>>>> Stashed changes
         .then(response => response.json())
         .then(response => {
-            setData(response.message);
+            console.log(response)
+            setData(response);
         });
         // .catch(err => console.error(err));
 
@@ -207,19 +203,9 @@ export default function Dashboard() {
                       display: 'flex',
                       flexDirection: 'column',
                       height: 260,
+                      overflowY: 'scroll',
                     }}
-                  >{advertView ?
-                    (<>
-                      <Typography gutterBottom variant="h3" sx={{ padding: 2 }}>
-                        Tutaj będą wyświetlone twoje ogłoszenia
-                      </Typography>
-                      <Typography gutterBottom variant="h4" sx={{ padding: 2 }}>
-                        Wciśnij przycisk poniżej aby dodać pierwsze ogłoszenie
-                      </Typography>
-                    </>)
-                    :
-                    <>
-                      <div >
+                  >
                         {data.map((user, index) => {
                           let rand = Math.random()
                           rand = rand.toString()
@@ -234,9 +220,6 @@ export default function Dashboard() {
                         }
                         )
                         }
-                      </div>
-                    </>
-                    }
                   </Paper>
                 </Grid>
                 <Grid item xs={12}>
