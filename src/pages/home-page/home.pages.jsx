@@ -13,7 +13,7 @@ export default function Home() {
 
   const options = {method: 'GET'};
   useEffect(() => {
-      fetch('https://twojsomsiad-backend.onrender.com/advert/', options)
+      fetch('https://twojsomsiad-backend.onrender.com/advert', options)
         .then(response => response.json())
         .then(response => {
             setData(response);
