@@ -27,6 +27,7 @@ import { useEffect } from 'react';
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
+  const [signed, setSigned] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
   const options = {
@@ -36,14 +37,14 @@ export default function Dashboard() {
       Authorization: `Bearer ${token}`
     },
   };
-  useEffect(() => {
-      fetch('https://twojsomsiad-backend.onrender.com/user/adverts', options)
-        .then(response => response.json())
-        .then(response => {
-            console.log(response)
-            setData(response);
-        });
-        // .catch(err => console.error(err));
+  useEffect(async () => {
+    await fetch('https://twojsomsiad-backend.onrender.com/user/adverts', options)
+      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+        setData(response);
+      });
+    // .catch(err => console.error(err));
 
   }, []);
 
@@ -206,20 +207,20 @@ export default function Dashboard() {
                       overflowY: 'scroll',
                     }}
                   >
-                        {data.map((user, index) => {
-                          let rand = Math.random()
-                          rand = rand.toString()
-                          let svg = createAvatar(style, {
-                            seed: rand,
-                            scale: 30,
-                            size: 100,
-                          });
-                          return (
-                            <Lista key={index} data={user} svg={svg} token={token} />
-                          )
-                        }
-                        )
-                        }
+                    {data.map((user, index) => {
+                      let rand = Math.random()
+                      rand = rand.toString()
+                      let svg = createAvatar(style, {
+                        seed: rand,
+                        scale: 30,
+                        size: 100,
+                      });
+                      return (
+                        <Lista key={index} data={user} svg={svg} token={token} />
+                      )
+                    }
+                    )
+                    }
                   </Paper>
                 </Grid>
                 <Grid item xs={12}>
@@ -240,9 +241,34 @@ export default function Dashboard() {
                     }}
                   >
                     <>
-                      <Typography gutterBottom variant="h2" sx={{ padding: 2 }}>
-                        Tutaj będą wyświetlone ogłoszenia, które przyjąłeś
-                      </Typography>
+                      <Grid container spacing={3}>
+                        <Grid item xs={12} md={8} lg={35}>
+                          <Paper
+                            sx={{
+                              p: 2,
+                              display: 'flex',
+                              flexDirection: 'column',
+                              height: 260,
+                              overflowY: 'scroll',
+                            }}
+                          >
+                            {data.map((user, index) => {
+                              let rand = Math.random()
+                              rand = rand.toString()
+                              let svg = createAvatar(style, {
+                                seed: rand,
+                                scale: 30,
+                                size: 100,
+                              });
+                              return (
+                                <Lista key={index} data={user} svg={svg} token={token} />
+                              )
+                            }
+                            )
+                            }
+                          </Paper>
+                        </Grid>
+                      </Grid>
                     </>
                   </Paper>
                   }

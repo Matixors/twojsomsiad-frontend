@@ -34,7 +34,23 @@ export default function Lista(props) {
     if (!(token != "")){
       window.location = '/login/';
     }
+
+    fetch(`https://twojsomsiad-backend.onrender.com/advert/${data.ID}/apply`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    }).then(res => {
+      if(res.status == 200){
+        console.log("Zgłoszono się na wolontariat");
+      }
+      else{
+        console.log("Nie udało się zgłosić na wolontariat");
+      }
+    })
   }
+
   data.date = data.date.replace('T', ' ');
   data.date = data.date.slice(0, 16);
 
@@ -71,9 +87,9 @@ export default function Lista(props) {
           {data.title}
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
+          {/* <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
             <FavoriteIcon />  200 punków pomocy
-          </IconButton>
+          </IconButton> */}
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
