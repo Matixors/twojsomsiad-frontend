@@ -1,15 +1,8 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
 import Paper from '@mui/material/Paper';
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Sidebar from '../../components/sidebar/sidebar.component';
@@ -20,14 +13,18 @@ const theme = createTheme();
 
 export default function Profile() {
   const [data, setData] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
   const options = {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY2Mzk1OTg1LCJpZCI6MSwib3JpZ19pYXQiOjE2NjYzOTIzODV9.gi2EwuuJvl94q6JUdQffE434Jdm-Cqo5zOqV1K0ENhQ'
-    }
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    cors: 'no-cors'
   };
   
-  fetch('http://twojsomsiad-backend.onrender.com/user', options)
+  fetch('https://twojsomsiad-backend.onrender.com/user', options)
     .then(response => response.json())
     .then(response => setData(response))
     .catch(err => console.error(err));

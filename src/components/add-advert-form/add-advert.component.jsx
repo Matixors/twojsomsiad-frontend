@@ -50,25 +50,17 @@ export default function AddAdvert({onClickBtn}) {
        'Content-Type': 'application/json',
        Authorization: `Bearer ${token}`
      },
-     body: {Title:data.get("title"),Description:data.get("description"),City:city, Date: data.get("date")}
+     body: JSON.stringify({Title:data.get("title"), Description:data.get("description"), City:city, Date: new Date(data.get("date")).toISOString()})
    };
-    console.log(options);
+   console.log(options)
     fetch('https://twojsomsiad-backend.onrender.com/advert/', options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
     
-
-
-
-
     if (!(token != "")){
       window.location = '/login/';
     }
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
   };
   const [city, setCity] = React.useState('');
   
