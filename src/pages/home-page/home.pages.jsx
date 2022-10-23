@@ -1,5 +1,5 @@
 import Sidebar from '../../components/sidebar/sidebar.component';
-import List from "../../components/adverts-view/advert-list.component";
+import Lista from "../../components/adverts-view/advert-list.component";
 import { createAvatar } from '@dicebear/avatars';
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
@@ -15,8 +15,10 @@ export default function Home() {
   useEffect(() => {
       fetch('https://twojsomsiad-backend.onrender.com/advert/', options)
         .then(response => response.json())
-        .then(response => console.log(response))
-        .catch(err => console.error(err));
+        .then(response => {
+            setData(response);
+        });
+        //.catch(err => console.error(err));
 /*
 axios.request(options).then(function (response) {
   let adverts = JSON.stringify(response.data)
@@ -29,7 +31,6 @@ axios.request(options).then(function (response) {
       });
 */
   }, []);
-
   return (
     <div>
       <Sidebar/>
@@ -43,7 +44,7 @@ axios.request(options).then(function (response) {
             size: 100,
           });
           return (
-            <List key={index} data={user} svg={svg} token={token} />
+            <Lista key={index} data={user} svg={svg} token={token} />
           )
         }
         )

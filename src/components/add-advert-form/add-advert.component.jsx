@@ -20,9 +20,25 @@ import React, { useState } from 'react';
 const theme = createTheme();
 
 export default function AddAdvert({onClickBtn}) {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY2Mzk1OTg1LCJpZCI6MSwib3JpZ19pYXQiOjE2NjYzOTIzODV9.gi2EwuuJvl94q6JUdQffE434Jdm-Cqo5zOqV1K0ENhQ'
+    },
+    body: {title:"Spacer z psem", description:"Proszę wyjść z moim psem Johnym na spacer w parku Zdrojowym na pół godziny i wrócić.", city:"Nowy Sącz", date:"2022-10-26T22:04:06.652069Z"}
+  };
+  
+  
   const [token, setToken] = useState(localStorage.getItem("token"));
-
+  
   const handleSubmit = (event) => {
+    
+    fetch('http://twojsomsiad-backend.onrender.com/advert/', options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+
     if (!(token != "")){
       window.location = '/login/';
     }
@@ -34,7 +50,7 @@ export default function AddAdvert({onClickBtn}) {
     });
   };
   const [city, setCity] = React.useState('');
-
+  
   const handleChange = (event) => {
     setCity(event.target.value);
   };
@@ -55,7 +71,7 @@ export default function AddAdvert({onClickBtn}) {
             flexDirection: 'column',
             alignItems: 'center',
           }}
-        >
+          >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <AccessibilityNewIcon />
           </Avatar>

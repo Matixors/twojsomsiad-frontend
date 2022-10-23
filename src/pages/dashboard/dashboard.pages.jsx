@@ -22,9 +22,25 @@ import * as styles from '../../styles/Dashboard.module.scss';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
+import Lista from "../../components/adverts-view/advert-list.component";
+import { useEffect } from 'react';
 
 export default function Dashboard() {
+  const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const options = {method: 'GET'};
+  useEffect(() => {
+    
+      fetch('http://twojsomsiad-backend.onrender.com/user/adverts/', options)
+        .then(response => response.json())
+        .then(response => {
+            setData(response);
+        });
+        //.catch(err => console.error(err));
+
+  }, []);
+
   const logout = () => {
     localStorage.setItem("token", "");
     setToken(localStorage.getItem("token"));
@@ -192,9 +208,25 @@ export default function Dashboard() {
                       </Typography>
                     </>)
                     :
-                    <Typography gutterBottom variant="h2" sx={{ padding: 2 }}>
-                      Ogłoszenie
-                    </Typography>}
+                    <>
+                      <div >
+                        {data.map((user, index) => {
+                          let rand = Math.random()
+                          rand = rand.toString()
+                          let svg = createAvatar(style, {
+                            seed: rand,
+                            scale: 30,
+                            size: 100,
+                          });
+                          return (
+                            <Lista key={index} data={user} svg={svg} token={token} />
+                          )
+                        }
+                        )
+                        }
+                      </div>
+                    </>
+                    }
                   </Paper>
                 </Grid>
                 <Grid item xs={12}>

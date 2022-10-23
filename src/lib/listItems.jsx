@@ -14,7 +14,15 @@ import HowToRegIcon from '@mui/icons-material/HowToReg';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { NavLink } from 'react-router-dom';
 import * as styles from '../styles/Sidebar-items.module.scss';
-
+import { useState } from 'react';
+/*
+const [token, setToken] = useState(localStorage.getItem("token"));
+const testloged = () =>{
+  if(token != ""){
+    console.log("AAAAA");
+  }
+}
+*/
 export const mainListItems = (
   <React.Fragment>
     <NavLink to="/" className={styles.link}>
