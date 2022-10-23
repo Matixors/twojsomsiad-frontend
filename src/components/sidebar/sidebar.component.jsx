@@ -20,7 +20,7 @@ import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
 
 
-export default function Sidebar() {
+export default function Sidebar({pageName}) {
     const [token, setToken] = useState(localStorage.getItem("token"));
 
     const logout = () => {
@@ -120,7 +120,7 @@ export default function Sidebar() {
                                 sx={{ flexGrow: 1 }}
                             >
                                 
-                                Strona główna
+                                {pageName}
                             </Typography>
                             
                             {(token != "")?
