@@ -32,7 +32,7 @@ export default function Profile() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Sidebar/>
+      <Sidebar pageName={"Profil użytkownika"}/>
       <AppBar
         position="absolute"
         color="default"
