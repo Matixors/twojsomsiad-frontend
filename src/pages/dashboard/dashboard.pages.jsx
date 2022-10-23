@@ -32,7 +32,7 @@ export default function Dashboard() {
   const options = {method: 'GET'};
   useEffect(() => {
     
-      fetch('http://twojsomsiad-backend.onrender.com/user/adverts/', options)
+      fetch('https://twojsomsiad-backend.onrender.com/user/adverts', options)
         .then(response => response.json())
         .then(response => {
             setData(response);
