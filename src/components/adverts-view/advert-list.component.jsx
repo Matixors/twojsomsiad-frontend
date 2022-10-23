@@ -23,7 +23,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function List(props) {
+export default function Lista(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -35,6 +35,11 @@ export default function List(props) {
       window.location = '/login/';
     }
   }
+  data.date = data.date.replace('T', ' ');
+  data.date = data.date.slice(0, 16);
+
+  data.CreatedAt = data.CreatedAt.replace('T', ' ');
+  data.CreatedAt = data.CreatedAt.slice(0, 16);
 
   return (
     <div>
@@ -49,20 +54,21 @@ export default function List(props) {
           }
           action={
             <span style={{ marginRight: "3vw", color: "grey", fontSize: "1.2em" }}>
-              12.11 godzina 13:30
+              {data.date
+               }
             </span>
           }
           title={
             <>
               <span>
-                {data.name}
+                {data.user.name}
               </span>
             </>
           }
-          subheader="14 Wrzesień 2016"
+          subheader={data.CreatedAt}
         />
         <CardContent>
-          {data.website} to imie psa z którym trzeba wyjść
+          {data.title}
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
@@ -79,7 +85,7 @@ export default function List(props) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            Super opis w którym Adam Małysz opowiada jaki to on jest biedny i nie stać go żeby iść z psem na spacer. Śmiechu warte, jeszcze jakieś ogłoszenia pisze.
+            {data.description}
             <Button variant="outlined" sx={{ float: "right", margin: "1%" }} onClick={handleVolounteer}>Zgłoś się</Button>
           </CardContent>
         </Collapse>
