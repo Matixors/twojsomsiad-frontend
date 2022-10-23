@@ -13,13 +13,39 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as styles from '../../styles/Login.module.scss';
 import axios from "axios";
 import React, { useState } from 'react';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 
 
 const theme = createTheme();
 
 export default function Login() {
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+  
+
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClick = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = (event, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+  
+      setOpen(false);
+    };
+  
+
+
+
   const [text, setText] = useState("mihou2@cms.com");
+  const [error, setError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -39,10 +65,9 @@ export default function Login() {
           window.location = '/';
         }
         else {
-          alert("Nie udało się zalogować");
         }
-      }).catch(function (error) {
-        alert("Nie udało się zalogować wystąpił błąd, " + error);
+      }).catch(function (ror) {
+        setOpen(true);
       });
     }
   };
@@ -51,6 +76,11 @@ export default function Login() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Logowanie nie powiodło się
+        </Alert>
+      </Snackbar>
         <Box
           sx={{
             marginTop: 8,
