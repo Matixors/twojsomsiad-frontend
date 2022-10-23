@@ -11,16 +11,12 @@ export default function Home() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const options = {
-    method: 'POST',
-    url: 'https://twojsomsiad-backend.onrender.com/advert',
-    headers: { 'Content-Type': 'application/json' }
-  };
+  const options = {method: 'GET'};
   useEffect(() => {
-   
-    axios.get('http://localhost:3000/advert').then(data => {
-      setData(data.data);
-    })
+      fetch('https://twojsomsiad-backend.onrender.com/advert/', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
 /*
 axios.request(options).then(function (response) {
   let adverts = JSON.stringify(response.data)
