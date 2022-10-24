@@ -11,6 +11,7 @@ import { lightBlue, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
+import AcceptUser from '../accept-user/accept-user.component';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -25,6 +26,7 @@ const ExpandMore = styled((props) => {
 
 export default function ListaD(props) {
   const [expanded, setExpanded] = React.useState(false);
+    //console.log(props)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -82,6 +84,7 @@ export default function ListaD(props) {
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
             {data.description} 
+            <AcceptUser id={props.data.ID}/>
           </CardContent>
         </Collapse>
       </Card>

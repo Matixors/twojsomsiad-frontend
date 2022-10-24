@@ -64,7 +64,7 @@ axios.request(options).then(function (response) {
   }, []);
   return (
     <div>
-      <Sidebar/>
+      <Sidebar pageName={"Strona główna"}/>
       <div className={styles.advertsBody}>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
