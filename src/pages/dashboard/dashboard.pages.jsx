@@ -29,7 +29,7 @@ import { Refresh } from '../../lib/refreshToken';
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const [signed, setSigned] = useState([]);
-  const [token, setToken] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY2NDAwNDEyLCJpZCI6MSwib3JpZ19pYXQiOjE2NjYzOTY4MTJ9.iKOBV4NzZ4X_iEqfPBaCOsOG7lGJ3lPUmcIzvgN_ip8"/*useState(localStorage.getItem("token"))*/;
+  const [token, setToken] = useState(localStorage.getItem("token"))
 
   const options = {
     method: 'GET',
