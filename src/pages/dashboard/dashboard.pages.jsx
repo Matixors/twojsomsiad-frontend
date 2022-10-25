@@ -1,4 +1,4 @@
-import ListaD from "../../components/adverts-dashboard-view/advert-list-dashboard.component";
+import UnorderedList from "../../components/adverts-dashboard-view/advert-list-dashboard.component";
 import AddAdvert from '../../components/add-advert-form/add-advert.component';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,13 +10,11 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../lib/listItems';
 import Button from '@mui/material/Button';
 import * as styles from '../../styles/Dashboard.module.scss';
@@ -25,10 +23,10 @@ import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Refresh } from '../../lib/refreshToken';
+import UnorderedList from "../../components/adverts-dashboard-view/advert-list-dashboard.component";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
-  const [signed, setSigned] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"))
 
   const options = {
@@ -232,7 +230,7 @@ export default function Dashboard() {
                         size: 100,
                       });
                       return (
-                        <ListaD key={index} data={user} svg={svg} token={token} />
+                        <UnorderedList key={index} data={user} svg={svg} token={token} />
                       )
                     }
                     )

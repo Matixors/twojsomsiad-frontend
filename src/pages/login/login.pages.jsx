@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import * as styles from '../../styles/Login.module.scss';
 import axios from "axios";
 import React, { useState } from 'react';
 import Snackbar from '@mui/material/Snackbar';
@@ -29,9 +28,6 @@ export default function Login() {
 
     const [open, setOpen] = React.useState(false);
   
-    const handleClick = () => {
-      setOpen(true);
-    };
   
     const handleClose = (event, reason) => {
       if (reason === 'clickaway') {

@@ -2,13 +2,10 @@ import Sidebar from '../../components/sidebar/sidebar.component';
 import Lista from "../../components/adverts-view/advert-list.component";
 import { createAvatar } from '@dicebear/avatars';
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
 import * as style from '@dicebear/pixel-art';
 import * as styles from '../../styles/Home.module.scss';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import Button from '@mui/material/Button';
-
 
 
 

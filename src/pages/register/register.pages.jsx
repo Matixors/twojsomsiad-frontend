@@ -13,19 +13,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import React, { useState } from 'react';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
 const theme = createTheme();
 
 export default function Register() {

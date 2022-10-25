@@ -6,7 +6,6 @@ import Error from "./pages/error-page/error.pages";
 import Profile from "./pages/profile/profile.pages";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import * as styles from './styles/App.module.scss';
 
 const darkTheme = createTheme({
