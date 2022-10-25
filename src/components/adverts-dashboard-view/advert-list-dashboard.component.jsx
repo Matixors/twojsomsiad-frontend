@@ -24,14 +24,14 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function ListaD(props) {
+export default function UnorderedList(props) {
   const [expanded, setExpanded] = React.useState(false);
     //console.log(props)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const { data, svg, token } = props;
+  const { data, svg } = props;
 
   data.date = data.date.replace('T', ' ');
   data.date = data.date.slice(0, 16);
