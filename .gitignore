@@ -97,3 +97,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Build folder
+dist/
