@@ -22,7 +22,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Lista(props) {
+export default function AdvertsList(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -30,7 +30,7 @@ export default function Lista(props) {
   };
   const { data, svg, token } = props;
   const handleVolounteer = () => {
-    if (!(token != "")){
+    if (!(token != "" && token != null)){
       window.location = '/login/';
     }
 
