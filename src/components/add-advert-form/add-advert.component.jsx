@@ -52,7 +52,7 @@ export default function AddAdvert({onClickBtn}) {
       .then(response => console.log(response))
       .catch(err => console.error(err));
     
-    if (!(token != "")){
+    if (!(token != "" && token != null)){
       window.location = '/login/';
     }
   };

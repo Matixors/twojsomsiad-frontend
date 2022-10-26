@@ -122,7 +122,7 @@ export default function Sidebar({pageName}) {
                                 {pageName}
                             </Typography>
                             
-                            {(token != "")?
+                            {(token != "" && token != null)?
                             <>
                              <span style={{ marginTop: "0"}} dangerouslySetInnerHTML={{ __html: svg }}>
                                 </span>

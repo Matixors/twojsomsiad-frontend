@@ -23,7 +23,6 @@ import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { Refresh } from '../../lib/refreshToken';
-import UnorderedList from "../../components/adverts-dashboard-view/advert-list-dashboard.component";
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
@@ -48,7 +47,7 @@ export default function Dashboard() {
             method: 'GET',
             mode: "no-cors",
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uZG9lQGV4YW1wbGUuY29tIiwiZXhwIjoxNjY2NTU3ODU2LCJpZCI6MSwib3JpZ19pYXQiOjE2NjY1NTQyNTZ9.svxu31DqzPXThJv_7HSZmWQW3OgEPSvVSlniOTPaVSo`
+              Authorization: `Bearer ${token}`
             }
           };
       fetch('https://twojsomsiad-backend.onrender.com/auth/refresh', option)
@@ -165,7 +164,7 @@ export default function Dashboard() {
               >
                 Panel ogłoszeń
               </Typography>
-              {(token != "") ?
+              {(token != "" && token != null) ?
                 <>
                   <div style={{ marginTop: "0" }} dangerouslySetInnerHTML={{ __html: svg }}>
                   </div>
