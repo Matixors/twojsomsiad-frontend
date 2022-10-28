@@ -53,7 +53,7 @@ export default function Dashboard() {
       fetch('https://twojsomsiad-backend.onrender.com/auth/refresh', option)
         .then(response => console.log(response.json()) /*localStorage.setItem('token', (response.data.token))*/)
         .catch(err => console.error(err));
-
+window.location = '/login/'
         }
         setData(response);
       });

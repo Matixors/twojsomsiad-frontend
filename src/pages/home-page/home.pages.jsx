@@ -9,7 +9,6 @@ import Notify from '../../components/notification/notification.component';
 
 export default function Home() {
     const [token, setToken] = useState(localStorage.getItem("token"));
-    const [tokn, setTokn] = useState(localStorage.getItem("tokn"));
     const [data, setData] = useState([]);
     
     const options = 
