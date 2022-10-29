@@ -26,7 +26,7 @@ import { Refresh } from '../../lib/refreshToken';
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token"))
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   const options = {
     method: 'GET',
@@ -35,25 +35,37 @@ export default function Dashboard() {
       Authorization: `Bearer ${token}`
     },
   };
+  const option = 
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      cors: 'no-cors'
+    };
   useEffect(() => {
     fetch('https://twojsomsiad-backend.onrender.com/user/adverts', options)
       .then(response => response.json())
       .then(response => {
-        console.log(localStorage.getItem("token"));
-        console.log(response);
         if(response.code == 401){
 
-          const option = {
-            method: 'GET',
-            mode: "no-cors",
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-          };
       fetch('https://twojsomsiad-backend.onrender.com/auth/refresh', option)
-        .then(response => console.log(response.json()) /*localStorage.setItem('token', (response.data.token))*/)
+        .then(response => response.json() )
+        .then(response => {
+          if(response.code == 200){
+          localStorage.setItem('token', (response.token));
+          window.location = '/dashboard';
+          }
+          else if (response.code == 401){
+            window.location = '/login/'
+          }
+      })
         .catch(err => console.error(err));
-window.location = '/login/'
+
+
+
+
         }
         setData(response);
       });

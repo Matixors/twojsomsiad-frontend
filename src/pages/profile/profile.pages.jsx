@@ -8,27 +8,60 @@ import Grid from '@mui/material/Grid';
 import Sidebar from '../../components/sidebar/sidebar.component';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-
+import { useEffect } from 'react';
 const theme = createTheme();
 
 export default function Profile() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    },
-    cors: 'no-cors'
-  };
-  
-  fetch('https://twojsomsiad-backend.onrender.com/user', options)
+  const options = 
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      cors: 'no-cors'
+    };
+    const option = 
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      cors: 'no-cors'
+    };
+    useEffect(() => {
+  fetch('https://twojsomsiad-backend.onrender.com/user/', options)
     .then(response => response.json())
-    .then(response => setData(response))
-    .catch(err => console.error(err));
+    .then(response => {
+        setData(response)
+      if(response.code == 401){
+        console.log("ddd");
+        
+      fetch('https://twojsomsiad-backend.onrender.com/auth/refresh', option)
+      .then(response => response.json() )
+      .then(response => {
+        if(response.code == 200){
+        localStorage.setItem('token', (response.token));
+        window.location = '/profile';
+        }
+        else if (response.code == 401){
+          window.location = '/login/'
+        }
+    })
+      .catch(err => console.error(err));
 
+
+
+
+      }
+    }
+      )
+    .catch(err => console.error(err));
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
