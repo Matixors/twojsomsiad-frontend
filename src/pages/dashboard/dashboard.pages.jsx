@@ -22,7 +22,6 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { Refresh } from '../../lib/refreshToken';
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
@@ -202,8 +201,6 @@ export default function Dashboard() {
             <Divider />
             <List component="nav">
               {mainListItems}
-              <Divider sx={{ my: 1 }} />
-              {secondaryListItems}
             </List>
           </Drawer>
 
@@ -211,9 +208,9 @@ export default function Dashboard() {
             component="main"
             sx={{
               backgroundColor: (theme) =>
-                theme.palette.mode === 'light'
-                  ? theme.palette.grey[100]
-                  : theme.palette.grey[900],
+              theme.palette.mode === 'light'
+              ? theme.palette.grey[100]
+              : theme.palette.grey[900],
               flexGrow: 1,
               height: '100vh',
               overflow: 'auto',
@@ -242,9 +239,9 @@ export default function Dashboard() {
                       });
                       return (
                         <UnorderedList key={index} data={user} svg={svg} token={token} />
+                        )
+                      }
                       )
-                    }
-                    )
                     }
                   </Paper>
                 </Grid>
@@ -264,7 +261,7 @@ export default function Dashboard() {
                       height: 260,
                       marginTop: "3vh"
                     }}
-                  >
+                    >
                     <>
                       <Typography gutterBottom variant="h2" sx={{ padding: 2 }}>
                         Tutaj będą wyświetlone ogłoszenia, które przyjąłeś
@@ -280,4 +277,7 @@ export default function Dashboard() {
       </ThemeProvider>
     </div>
   )
-}
+}/*
+  <Divider sx={{ my: 1 }} />
+  {secondaryListItems}
+  */
