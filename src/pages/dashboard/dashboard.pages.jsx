@@ -35,6 +35,7 @@ export default function Dashboard() {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     },
+    cors: 'no-cors'
   };
   const option = 
     {
@@ -60,6 +61,7 @@ export default function Dashboard() {
           }
           else if (response.code == 401){
             navigate('/login');
+            navigate(0);
           }
       })
         .catch(err => console.error(err));
