@@ -22,8 +22,10 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
@@ -54,10 +56,10 @@ export default function Dashboard() {
         .then(response => {
           if(response.code == 200){
           localStorage.setItem('token', (response.token));
-          window.location = '/dashboard';
+          navigate('/dashboard');
           }
           else if (response.code == 401){
-            window.location = '/login/'
+            navigate('/login');
           }
       })
         .catch(err => console.error(err));
@@ -75,7 +77,7 @@ export default function Dashboard() {
   const logout = () => {
     localStorage.setItem("token", "");
     setToken(localStorage.getItem("token"));
-    window.location = "/";
+    navigate("/");
   }
   let rand = Math.random()
   rand = rand.toString();

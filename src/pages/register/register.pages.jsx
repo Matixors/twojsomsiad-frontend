@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import React, { useState } from 'react';
@@ -16,6 +16,7 @@ import React, { useState } from 'react';
 const theme = createTheme();
 
 export default function Register() {
+  const navigate = useNavigate();
   const [text, setText] = useState("mihou2@cms.com");
 
   const handleSubmit = (event) => {
@@ -32,7 +33,7 @@ export default function Register() {
 
       axios.request(options).then(function (response) {
         if (response.status == 200) {
-          window.location = '/'
+          navigate('/')
         } else {
           alert("Błąd: " + response.status)
         }

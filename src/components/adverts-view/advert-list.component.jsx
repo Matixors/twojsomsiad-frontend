@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import { lightBlue, red } from '@mui/material/colors';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -23,6 +24,9 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function AdvertsList(props) {
+
+  const navigate = useNavigate();
+
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -31,7 +35,7 @@ export default function AdvertsList(props) {
   const { data, svg, token } = props;
   const handleVolounteer = () => {
     if (!(token != "" && token != null)){
-      window.location = '/login/';
+      Navigate('/login');
     }
 
     fetch(`https://twojsomsiad-backend.onrender.com/advert/${data.ID}/apply`, {
