@@ -153,8 +153,6 @@ export default function Sidebar({pageName}) {
                         <Divider />
                         <List component="nav">
                             {mainListItems}
-                            <Divider sx={{ my: 1 }} />
-                            {secondaryListItems}
                         </List>
                     </Drawer>
                 </Box>
@@ -164,6 +162,10 @@ export default function Sidebar({pageName}) {
 }
 
 /*
+<Divider sx={{ my: 1 }} />
+{secondaryListItems}
+
+
 
 <div className={open?styles.sidenav:styles.sidenavClosed}>
         <img src="logo.svg" alt="super logo" className={styles.logo}/>
