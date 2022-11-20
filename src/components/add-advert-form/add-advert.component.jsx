@@ -2,7 +2,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -13,10 +12,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function AddAdvert({onClickBtn}) {
+
+  const navigate = useNavigate();
+
   const [token, setToken] = useState(localStorage.getItem("token"));
   /*
   const options = {
@@ -53,7 +56,7 @@ export default function AddAdvert({onClickBtn}) {
       .catch(err => console.error(err));
     
     if (!(token != "" && token != null)){
-      window.location = '/login/';
+      navigate('/login');
     }
   };
   const [city, setCity] = React.useState('');

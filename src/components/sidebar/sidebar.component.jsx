@@ -17,15 +17,19 @@ import Button from '@mui/material/Button';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Sidebar({pageName}) {
+
+    const navigate = useNavigate();
+
     const [token, setToken] = useState(localStorage.getItem("token"));
 
     const logout = () => {
         localStorage.setItem("token", "");
         setToken(localStorage.getItem("token"));
-        window.location = "/";
+        navigate("/");
     }
 
     let rand = Math.random()

@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { NavLink } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import React, { useState } from 'react';
@@ -25,6 +25,7 @@ export default function Login() {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
   
+    const navigate = useNavigate();
 
     const [open, setOpen] = React.useState(false);
   
@@ -58,7 +59,7 @@ export default function Login() {
       axios.request(options).then(function (response) {
         localStorage.setItem('token', (response.data.token));
         if (response.status == 200){
-          window.location = '/';
+          navigate('/');
         }
         else {
         }

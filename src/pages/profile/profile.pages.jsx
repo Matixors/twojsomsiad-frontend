@@ -9,9 +9,11 @@ import Sidebar from '../../components/sidebar/sidebar.component';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const theme = createTheme();
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
@@ -46,10 +48,10 @@ export default function Profile() {
       .then(response => {
         if(response.code == 200){
         localStorage.setItem('token', (response.token));
-        window.location = '/profile';
+        navigate('/profile');
         }
         else if (response.code == 401){
-          window.location = '/login/'
+          navigate('/login');
         }
     })
       .catch(err => console.error(err));
