@@ -16,10 +16,28 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import React, { useState } from 'react';
-
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 const theme = createTheme();
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function AddAdvert({onClickBtn}) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const [token, setToken] = useState(localStorage.getItem("token"));
   /*
   const options = {
@@ -61,6 +79,7 @@ export default function AddAdvert({onClickBtn}) {
     if (!(token != "")){
       window.location = '/login/';
     }
+    handleClick();
   };
   const [city, setCity] = React.useState('');
   
@@ -150,6 +169,11 @@ export default function AddAdvert({onClickBtn}) {
 
           </Box>
         </Box>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+          Ogłoszenie zostało dodane
+        </Alert>
+      </Snackbar>
       </Container>
     </ThemeProvider>
   );

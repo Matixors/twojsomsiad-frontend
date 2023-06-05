@@ -62,7 +62,7 @@ export const mainListItems = (
         <ListItemIcon>
           <PeopleAltIcon />
         </ListItemIcon>
-        <ListItemText primary="Profkkjasajsil" />
+        <ListItemText primary="Profil" />
       </ListItemButton>
     </NavLink>
   </React.Fragment>

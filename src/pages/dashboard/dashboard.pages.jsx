@@ -24,11 +24,28 @@ import * as style from '@dicebear/pixel-art';
 import React, { useState } from 'react';
 import Lista from "../../components/adverts-view/advert-list.component";
 import { useEffect } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 export default function Dashboard() {
   const [data, setData] = useState([]);
   const [signed, setSigned] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const [dopen, setDopen] = React.useState(false);
+  const Transition = React.forwardRef(function Transition(props, ref) {
+      return <Slide direction="up" ref={ref} {...props} />;
+    });
+    const closeit = () => {
+      setDopen(false);
+    }
+    const showit = () => {
+      setDopen(true);
+    }
 
   const options = {
     method: 'GET',
@@ -155,7 +172,7 @@ export default function Dashboard() {
                 <>
                   <div style={{ marginTop: "0" }} dangerouslySetInnerHTML={{ __html: svg }}>
                   </div>
-                  <Button variant="outlined" sx={{ color: "white" }} onClick={logout} >Wyloguj się</Button>
+                  <Button variant="outlined" sx={{ color: "white" }} onClick={showit} >Wyloguj się</Button>
                 </>
                 : ""}
             </Toolbar>
@@ -179,6 +196,24 @@ export default function Dashboard() {
               {mainListItems}
               <Divider sx={{ my: 1 }} />
             </List>
+            <Dialog
+        open={dopen}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={closeit}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Czy jesteś tego pewny/na?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Czy na pewno chcesz się wylogować?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeit}>Nie</Button>
+          <Button onClick={logout}>Tak</Button>
+        </DialogActions>
+      </Dialog>
           </Drawer>
 
           <Box
