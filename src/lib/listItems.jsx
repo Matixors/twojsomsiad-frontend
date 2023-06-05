@@ -15,6 +15,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { NavLink } from 'react-router-dom';
 import * as styles from '../styles/Sidebar-items.module.scss';
 import { useState } from 'react';
+import NotificationAddIcon from '@mui/icons-material/NotificationAdd';
 /*
 const [token, setToken] = useState(localStorage.getItem("token"));
 const testloged = () =>{
@@ -41,6 +42,14 @@ export const mainListItems = (
         <ListItemText primary="Panel ogłoszeń" />
       </ListItemButton>
     </NavLink>
+    {/* <NavLink to="/applications" className={styles.link}>
+      <ListItemButton>
+        <ListItemIcon>
+          <NotificationAddIcon />
+        </ListItemIcon>
+        <ListItemText primary="Aplikacje" />
+      </ListItemButton>
+    </NavLink> */}
     <NavLink to="/login" className={styles.link}>
       <ListItemButton>
         <ListItemIcon>
@@ -62,7 +71,7 @@ export const mainListItems = (
         <ListItemIcon>
           <PeopleAltIcon />
         </ListItemIcon>
-        <ListItemText primary="Profkkjasajsil" />
+        <ListItemText primary="Profil" />
       </ListItemButton>
     </NavLink>
   </React.Fragment>
