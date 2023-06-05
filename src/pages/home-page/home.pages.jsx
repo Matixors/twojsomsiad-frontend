@@ -1,30 +1,27 @@
 import Sidebar from '../../components/sidebar/sidebar.component';
-import AdvertsList from "../../components/adverts-view/advert-list.component";
+import Lista from "../../components/adverts-view/advert-list.component";
 import { createAvatar } from '@dicebear/avatars';
 import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 import * as style from '@dicebear/pixel-art';
 import * as styles from '../../styles/Home.module.scss';
-import Notify from '../../components/notification/notification.component';
 
 
 export default function Home() {
-    const [token, setToken] = useState(localStorage.getItem("token"));
-    const [data, setData] = useState([]);
-    
-    const options = 
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      cors: 'no-cors'
-    };
-    useEffect(() => {
-      if(token == null){
-        setToken("");
-      }
-      fetch('https://twojsomsiad-backend.onrender.com/advert', options)
+  const [data, setData] = useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const options = 
+  {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    cors: 'no-cors'
+  };
+  useEffect(() => {
+      fetch('http://localhost:3000/advert', options)
         .then(response => response.json())
         .then(response => {
             setData(response);
@@ -44,9 +41,8 @@ axios.request(options).then(function (response) {
   }, []);
   return (
     <div>
-      <Sidebar pageName={"Strona główna"}/>
+      <Sidebar siteName={"Strona główna"}/>
       <div className={styles.advertsBody}>
-          <Notify />
         {data.map((user, index) => {
           let rand = Math.random()
           rand = rand.toString()
@@ -56,7 +52,7 @@ axios.request(options).then(function (response) {
             size: 100,
           });
           return (
-            <AdvertsList key={index} data={user} svg={svg} token={token} />
+            <Lista key={index} data={user} svg={svg} token={token} />
           )
         }
         )

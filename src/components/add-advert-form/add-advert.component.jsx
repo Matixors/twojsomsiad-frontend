@@ -2,6 +2,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
@@ -12,14 +16,10 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
 export default function AddAdvert({onClickBtn}) {
-
-  const navigate = useNavigate();
-
   const [token, setToken] = useState(localStorage.getItem("token"));
   /*
   const options = {
@@ -32,6 +32,9 @@ export default function AddAdvert({onClickBtn}) {
     body: {title:"Spacer z psem", description:"Proszę wyjść z moim psem Johnym na spacer w parku Zdrojowym na pół godziny i wrócić.", city:"Nowy Sącz", date:"2022-10-26T22:04:06.652069Z"}
   };
   */
+
+
+ 
  const handleSubmit = (event) => {
    /*
    fetch('https://twojsomsiad-backend.onrender.com/advert', options)
@@ -50,13 +53,13 @@ export default function AddAdvert({onClickBtn}) {
      body: JSON.stringify({Title:data.get("title"), Description:data.get("description"), City:city, Date: new Date(data.get("date")).toISOString()})
    };
    console.log(options)
-    fetch('https://twojsomsiad-backend.onrender.com/advert/', options)
+    fetch('http://localhost:3000/advert/', options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
     
-    if (!(token != "" && token != null)){
-      navigate('/login');
+    if (!(token != "")){
+      window.location = '/login/';
     }
   };
   const [city, setCity] = React.useState('');

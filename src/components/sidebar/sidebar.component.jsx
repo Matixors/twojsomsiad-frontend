@@ -11,25 +11,23 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from '../../lib/listItems';
 import * as styles from '../../styles/Sidebar.module.scss';
 import Button from '@mui/material/Button';
 import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/pixel-art';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 
-export default function Sidebar({pageName}) {
-
-    const navigate = useNavigate();
-
+export default function Sidebar(props) {
     const [token, setToken] = useState(localStorage.getItem("token"));
 
+    const { siteName } = props;
     const logout = () => {
         localStorage.setItem("token", "");
         setToken(localStorage.getItem("token"));
-        navigate("/");
+        window.location = "/";
     }
 
     let rand = Math.random()
@@ -123,10 +121,10 @@ export default function Sidebar({pageName}) {
                                 sx={{ flexGrow: 1 }}
                             >
                                 
-                                {pageName}
+                                {siteName != "" ? siteName : "Strona główna"}
                             </Typography>
                             
-                            {(token != "" && token != null)?
+                            {(token != "")?
                             <>
                              <span style={{ marginTop: "0"}} dangerouslySetInnerHTML={{ __html: svg }}>
                                 </span>
@@ -153,6 +151,7 @@ export default function Sidebar({pageName}) {
                         <Divider />
                         <List component="nav">
                             {mainListItems}
+                            <Divider sx={{ my: 1 }} />
                         </List>
                     </Drawer>
                 </Box>
@@ -162,10 +161,6 @@ export default function Sidebar({pageName}) {
 }
 
 /*
-<Divider sx={{ my: 1 }} />
-{secondaryListItems}
-
-
 
 <div className={open?styles.sidenav:styles.sidenavClosed}>
         <img src="logo.svg" alt="super logo" className={styles.logo}/>
