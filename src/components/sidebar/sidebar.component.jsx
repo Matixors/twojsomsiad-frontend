@@ -124,7 +124,7 @@ export default function Sidebar(props) {
                                 {siteName != "" ? siteName : "Strona główna"}
                             </Typography>
                             
-                            {(token != "")?
+                            {token ?
                             <>
                              <span style={{ marginTop: "0"}} dangerouslySetInnerHTML={{ __html: svg }}>
                                 </span>

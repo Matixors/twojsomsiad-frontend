@@ -32,7 +32,7 @@ export default function Profile() {
 
   React.useEffect(() => {
     setContentChanged(false);
-    fetch('http://localhost:3000/user/', options)
+    fetch(import.meta.env.VITE_BACKEND_URL + '/user/', options)
       .then(response => response.json())
       .then(response => setData(response))
       .catch(err => console.error(err));
@@ -45,7 +45,7 @@ export default function Profile() {
     const formData = { username: data.get("userName") || "", name: data.get("firstName") || "", surname: data.get("lastName") || "", password: data.get("password") || "" };
     const options = {
       method: 'POST',
-      url: 'http://localhost:3000/user/',
+      url: import.meta.env.VITE_BACKEND_URL + '/user/',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`

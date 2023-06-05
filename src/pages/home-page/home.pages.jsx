@@ -21,7 +21,7 @@ export default function Home() {
     cors: 'no-cors'
   };
   useEffect(() => {
-      fetch('http://localhost:3000/advert', options)
+      fetch(import.meta.env.VITE_BACKEND_URL + '/advert', options)
         .then(response => response.json())
         .then(response => {
             setData(response);

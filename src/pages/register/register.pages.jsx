@@ -38,7 +38,7 @@ export default function Register() {
     if (data.get('email').match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)) {
       const options = {
         method: 'POST',
-        url: 'http://localhost:3000/auth/register',
+        url: import.meta.env.VITE_BACKEND_URL + '/auth/register',
         headers: { 'Content-Type': 'application/json' },
         data: { username: data.get("userName"), name: data.get("firstName"), surname: data.get("lastName"), email: data.get("email"), password: data.get("password") }
       };

@@ -53,7 +53,7 @@ export default function AddAdvert({onClickBtn}) {
      body: JSON.stringify({Title:data.get("title"), Description:data.get("description"), City:city, Date: new Date(data.get("date")).toISOString()})
    };
    console.log(options)
-    fetch('http://localhost:3000/advert/', options)
+    fetch(import.meta.env.VITE_BACKEND_URL + '/advert/', options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
