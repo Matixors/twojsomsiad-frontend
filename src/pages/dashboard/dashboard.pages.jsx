@@ -38,7 +38,7 @@ export default function Dashboard() {
     },
   };
   useEffect(() => {
-    fetch('http://localhost:3000/user/adverts', options)
+    fetch(import.meta.env.VITE_BACKEND_URL + '/user/adverts', options)
       .then(response => response.json())
       .then(response => {
         console.log(response)

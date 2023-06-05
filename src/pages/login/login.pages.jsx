@@ -27,7 +27,7 @@ export default function Login() {
     if(data.get('email').match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)){
       const options = {
         method: 'POST',
-        url: 'http://localhost:3000/auth/login',
+        url: import.meta.env.VITE_BACKEND_URL + '/auth/login',
         headers: { 'Content-Type': 'application/json' },
         data: {email: data.get('email'),	password: data.get('password')}
       };
