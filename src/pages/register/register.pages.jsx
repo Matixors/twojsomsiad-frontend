@@ -8,15 +8,27 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import React, { useState } from 'react';
 
+function Copyright(props) {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 const theme = createTheme();
 
 export default function Register() {
-  const navigate = useNavigate();
   const [text, setText] = useState("mihou2@cms.com");
 
   const handleSubmit = (event) => {
@@ -26,14 +38,14 @@ export default function Register() {
     if (data.get('email').match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)) {
       const options = {
         method: 'POST',
-        url: 'https://twojsomsiad-backend.onrender.com/auth/register',
+        url: 'http://localhost:3000/auth/register',
         headers: { 'Content-Type': 'application/json' },
         data: { username: data.get("userName"), name: data.get("firstName"), surname: data.get("lastName"), email: data.get("email"), password: data.get("password") }
       };
 
       axios.request(options).then(function (response) {
         if (response.status == 200) {
-          navigate('/')
+          window.location = '/'
         } else {
           alert("Błąd: " + response.status)
         }

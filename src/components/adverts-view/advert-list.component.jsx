@@ -8,9 +8,9 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { lightBlue, red } from '@mui/material/colors';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -23,10 +23,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function AdvertsList(props) {
-
-  const navigate = useNavigate();
-
+export default function Lista(props) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -34,21 +31,21 @@ export default function AdvertsList(props) {
   };
   const { data, svg, token } = props;
   const handleVolounteer = () => {
-    if (!(token != "" && token != null)){
-      Navigate('/login');
+    if (!(token != "")) {
+      window.location = '/login/';
     }
 
-    fetch(`https://twojsomsiad-backend.onrender.com/advert/${data.ID}/apply`, {
+    fetch(`http://localhost:3000/advert/${data.ID}/apply`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
     }).then(res => {
-      if(res.status == 200){
+      if (res.status == 200) {
         console.log("Zgłoszono się na wolontariat");
       }
-      else{
+      else {
         console.log("Nie udało się zgłosić na wolontariat");
       }
     })
@@ -74,7 +71,7 @@ export default function AdvertsList(props) {
           action={
             <span style={{ marginRight: "3vw", color: "grey", fontSize: "1.2em" }}>
               {data.date
-               }
+              }
             </span>
           }
           title={
@@ -90,9 +87,9 @@ export default function AdvertsList(props) {
           {data.title}
         </CardContent>
         <CardActions disableSpacing>
-          {/* <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
+          <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
             <FavoriteIcon />  200 punków pomocy
-          </IconButton> */}
+          </IconButton>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}

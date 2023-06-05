@@ -8,41 +8,17 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as styles from '../../styles/Login.module.scss';
 import axios from "axios";
 import React, { useState } from 'react';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-
-
+import { redirect } from "react-router-dom";redirect 
 
 const theme = createTheme();
 
 export default function Login() {
-
-  const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-  
-    const navigate = useNavigate();
-
-    const [open, setOpen] = React.useState(false);
-  
-  
-    const handleClose = (event, reason) => {
-      if (reason === 'clickaway') {
-        return;
-      }
-  
-      setOpen(false);
-    };
-  
-
-
-
   const [text, setText] = useState("mihou2@cms.com");
-  const [error, setError] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -51,7 +27,7 @@ export default function Login() {
     if(data.get('email').match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm)){
       const options = {
         method: 'POST',
-        url: 'https://twojsomsiad-backend.onrender.com/auth/login',
+        url: 'http://localhost:3000/auth/login',
         headers: { 'Content-Type': 'application/json' },
         data: {email: data.get('email'),	password: data.get('password')}
       };
@@ -59,12 +35,13 @@ export default function Login() {
       axios.request(options).then(function (response) {
         localStorage.setItem('token', (response.data.token));
         if (response.status == 200){
-          navigate('/');
+          window.location = "/";
         }
         else {
+          alert("Nie udało się zalogować");
         }
-      }).catch(function (ror) {
-        setOpen(true);
+      }).catch(function (error) {
+        alert("Nie udało się zalogować wystąpił błąd");
       });
     }
   };
@@ -73,11 +50,6 @@ export default function Login() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-          Logowanie nie powiodło się
-        </Alert>
-      </Snackbar>
         <Box
           sx={{
             marginTop: 8,
