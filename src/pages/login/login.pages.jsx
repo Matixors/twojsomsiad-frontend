@@ -31,7 +31,7 @@ export default function Login() {
         headers: { 'Content-Type': 'application/json' },
         data: {email: data.get('email'),	password: data.get('password')}
       };
-      
+      console.log(import.meta.env)
       axios.request(options).then(function (response) {
         localStorage.setItem('token', (response.data.token));
         if (response.status == 200){

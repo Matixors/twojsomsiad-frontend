@@ -197,15 +197,10 @@ export default function Dashboard() {
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={8} lg={35}>
-                  <Paper
-                    sx={{
-                      p: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      height: 260,
-                      overflowY: 'scroll',
-                    }}
-                  >
+                  <Box sx={{marginTop: "2vw", marginBottom: "2vw",}}>
+                    <Typography variant="h6" component="h2" gutterBottom>
+                      Twoje ogłoszenia:
+                    </Typography>
                     {data.map((user, index) => {
                       let rand = Math.random()
                       rand = rand.toString()
@@ -220,7 +215,7 @@ export default function Dashboard() {
                     }
                     )
                     }
-                  </Paper>
+                  </Box>
                 </Grid>
                 <Grid item xs={12}>
                   <Button onClick={() => {
@@ -230,46 +225,9 @@ export default function Dashboard() {
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 500, marginTop: "2vh" }}>
                       <AddAdvert onClickBtn={changeAdvertView} />
                     </Paper>
-                  </Grid>) : <Paper
-                    sx={{
-                      p: 2,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      height: 260,
-                      marginTop: "3vh"
-                    }}
-                  >
+                  </Grid>) :
                     <>
-                      <Grid container spacing={3}>
-                        <Grid item xs={12} md={8} lg={35}>
-                          <Paper
-                            sx={{
-                              p: 2,
-                              display: 'flex',
-                              flexDirection: 'column',
-                              height: 260,
-                              overflowY: 'scroll',
-                            }}
-                          >
-                            {data.map((user, index) => {
-                              let rand = Math.random()
-                              rand = rand.toString()
-                              let svg = createAvatar(style, {
-                                seed: rand,
-                                scale: 30,
-                                size: 100,
-                              });
-                              return (
-                                <Lista key={index} data={user} svg={svg} token={token} />
-                              )
-                            }
-                            )
-                            }
-                          </Paper>
-                        </Grid>
-                      </Grid>
                     </>
-                  </Paper>
                   }
                 </Grid>
               </Grid>
