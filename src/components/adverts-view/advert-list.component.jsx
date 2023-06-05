@@ -59,7 +59,7 @@ export default function Lista(props) {
 
   return (
     <div>
-      <Card sx={{ width: "80%", height: "auto", marginBottom: "1%", marginLeft: "10%", marginRight: "10%" }}>
+      <Card sx={{ width: "100%", height: "auto", marginBottom: "1%", }}>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: lightBlue[500] }} aria-label="recipe">

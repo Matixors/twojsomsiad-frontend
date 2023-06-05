@@ -5,13 +5,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import * as style from '@dicebear/pixel-art';
 import * as styles from '../../styles/Home.module.scss';
+import { Container } from '@mui/material';
 
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const options = 
+  const options =
   {
     method: 'GET',
     headers: {
@@ -21,42 +22,44 @@ export default function Home() {
     cors: 'no-cors'
   };
   useEffect(() => {
-      fetch(import.meta.env.VITE_BACKEND_URL + '/advert', options)
-        .then(response => response.json())
-        .then(response => {
-            setData(response);
-        });
-        //.catch(err => console.error(err));
-/*
-axios.request(options).then(function (response) {
-  let adverts = JSON.stringify(response.data)
-        if (response.status == 200){
-          console.log(adverts);
-        }
-      }).catch(function (error) {
-        alert("Nie udało się zalogować wystąpił błąd, " + error);
-        console.log(adverts);
+    fetch(import.meta.env.VITE_BACKEND_URL + '/advert', options)
+      .then(response => response.json())
+      .then(response => {
+        setData(response);
       });
-*/
+    //.catch(err => console.error(err));
+    /*
+    axios.request(options).then(function (response) {
+      let adverts = JSON.stringify(response.data)
+            if (response.status == 200){
+              console.log(adverts);
+            }
+          }).catch(function (error) {
+            alert("Nie udało się zalogować wystąpił błąd, " + error);
+            console.log(adverts);
+          });
+    */
   }, []);
   return (
     <div>
-      <Sidebar siteName={"Strona główna"}/>
+      <Sidebar siteName={"Strona główna"} />
       <div className={styles.advertsBody}>
-        {data.map((user, index) => {
-          let rand = Math.random()
-          rand = rand.toString()
-          let svg = createAvatar(style, {
-            seed: rand,
-            scale: 30,
-            size: 100,
-          });
-          return (
-            <Lista key={index} data={user} svg={svg} token={token} />
+        <Container maxWidth="lg" sx={{ marginLeft: "10%", marginRight: "10%",  mt: 4, mb: 4 }}>
+          {data.map((user, index) => {
+            let rand = Math.random()
+            rand = rand.toString()
+            let svg = createAvatar(style, {
+              seed: rand,
+              scale: 30,
+              size: 100,
+            });
+            return (
+              <Lista key={index} data={user} svg={svg} token={token} />
+            )
+          }
           )
-        }
-        )
-        }
+          }
+        </Container>
       </div>
     </div>
   )
