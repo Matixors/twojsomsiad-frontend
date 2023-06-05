@@ -11,6 +11,7 @@ import { lightBlue, red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Button from '@mui/material/Button';
+import { NavLink } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -87,9 +88,10 @@ export default function Lista(props) {
           {data.title}
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
+          {/* <IconButton aria-label="add to favorites" sx={{ color: "red", cursor: "context-menu", fontSize: "1em", marginLeft: "2vh" }}>
             <FavoriteIcon />  200 punków pomocy
-          </IconButton>
+          </IconButton> */}
+          <NavLink to={`/${data.ID}/applications`}>Aplikacje</NavLink>
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}

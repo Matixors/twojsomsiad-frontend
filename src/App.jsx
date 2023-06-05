@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import * as styles from './styles/App.module.scss';
+import Applications from "./pages/applications";
 
 const darkTheme = createTheme({
   palette: {
@@ -24,6 +25,7 @@ export default function App() {
           <Route index element={<Home/>}/>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/:advertNumber/applications" element={<Applications />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile/>}/>
           <Route path="*" element={<Error/>} />
