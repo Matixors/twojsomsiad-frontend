@@ -12,8 +12,19 @@ import { NavLink } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import React, { useState } from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Copyright(props) {
+  
+  
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -27,8 +38,26 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function Register() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+
+ 
   const [text, setText] = useState("mihou2@cms.com");
 
   const handleSubmit = (event) => {
@@ -47,10 +76,10 @@ export default function Register() {
         if (response.status == 200) {
           window.location = '/'
         } else {
-          alert("Błąd: " + response.status)
+          handleClick();
         }
       }).catch(function (error) {
-        alert("Błąd: " + error.message)
+        handleClick();
       });
     }
   };
@@ -59,6 +88,14 @@ export default function Register() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Nie udało się zarejestrować!
+        </Alert>
+      </Snackbar>
+
+       
         <Box
           sx={{
             marginTop: 8,
@@ -131,9 +168,9 @@ export default function Register() {
               </Grid>
             </Grid>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
+              type='submit'
               sx={{ mt: 3, mb: 2 }}
             >
               Zarejestruj się

@@ -13,14 +13,46 @@ import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import axios from "axios";
 import { Navigate } from 'react-router-dom';
-
+import Slide from '@mui/material/Slide';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 const theme = createTheme();
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function Profile() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [text, setText] = useState("");
   const [contentChanged, setContentChanged] = useState(false);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const [open2, setOpen2] = React.useState(false);
+
+  const handleClick2 = () => {
+    setOpen2(true);
+  };
+
+  const handleClose2 = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen2(false);
+  };
 
   const options = {
     method: 'GET',
@@ -55,18 +87,30 @@ export default function Profile() {
 
     axios.request(options).then(function (response) {
       if (response.status == 200) {
+        handleClick();
         setContentChanged(true);
+
       } else {
-        alert("Błąd: " + response.status)
+        handleClick2();
       }
     }).catch(function (error) {
-      alert("Błąd: " + error.message)
+      handleClick2();
     });
   };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Dane zostały zaktualizowane
+        </Alert>
+      </Snackbar>
+      <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+        <Alert onClose={handleClose2} severity="error" sx={{ width: '100%' }}>
+          Dane nie zostały zaktualizowane, wystąpił błąd
+        </Alert>
+      </Snackbar>
       <Sidebar siteName={"Profil"}/>
       <AppBar
         position="absolute"

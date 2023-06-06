@@ -14,10 +14,30 @@ import * as styles from '../../styles/Login.module.scss';
 import axios from "axios";
 import React, { useState } from 'react';
 import { redirect } from "react-router-dom";redirect 
-
+import Slide from '@mui/material/Slide';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 const theme = createTheme();
-
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 export default function Login() {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const [text, setText] = useState("mihou2@cms.com");
 
   const handleSubmit = (event) => {
@@ -38,10 +58,10 @@ export default function Login() {
           window.location = "/";
         }
         else {
-          alert("Nie udało się zalogować");
+          handleClick();
         }
       }).catch(function (error) {
-        alert("Nie udało się zalogować wystąpił błąd");
+        handleClick();
       });
     }
   };
@@ -50,6 +70,11 @@ export default function Login() {
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Nie udało się zalogować!
+        </Alert>
+      </Snackbar>
         <Box
           sx={{
             marginTop: 8,
