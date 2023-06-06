@@ -26,6 +26,7 @@ const ExpandMore = styled((props) => {
 export default function ApplicationItem(props) {
     const [expanded, setExpanded] = React.useState(false);
     const [user, setUser] = React.useState([]);
+    const [advert, setAdvert] = React.useState([]);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -64,7 +65,6 @@ export default function ApplicationItem(props) {
             .then(response => response.json())
             .then(response => setUser(response))
             .catch(err => console.error(err));
-        
     }, []);
 
 

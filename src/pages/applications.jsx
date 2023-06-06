@@ -26,6 +26,7 @@ import Lista from "../components/adverts-view/advert-list.component";
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ApplicationItem from '../components/application-item';
+import axios from "axios";
 
 export default function Applications() {
   const [data, setData] = useState([]);
@@ -116,6 +117,27 @@ export default function Applications() {
 
   }
 
+  // const [advert, setAdvert] = React.useState();
+
+  // const ops = {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${token}`
+  //   },
+  // };
+
+
+  // React.useEffect(() => {
+  //   console.log(import.meta.env.VITE_BACKEND_URL + `/advert/${advertNumber}/`)
+  //   fetch(import.meta.env.VITE_BACKEND_URL + `/advert/${advertNumber}/`, ops)
+  //     .then(response => response.json())
+  //     .then(response => console.log(response))
+  //     .then(response => setAdvert(response))
+  //     .catch(err => console.error(err));
+
+  // }, []);
+
   const mdTheme = createTheme();
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
@@ -152,7 +174,7 @@ export default function Applications() {
                 noWrap
                 sx={{ flexGrow: 1 }}
               >
-                Zgłoszenia do ogłoszenia nr {advertNumber}
+                Zgłoszenia do ogłoszenia {advertNumber}
               </Typography>
               {(token != "") ?
                 <>
@@ -200,13 +222,13 @@ export default function Applications() {
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
               <Grid container spacing={3}>
                 <Grid item xs={12} md={8} lg={35}>
-                  <Box sx={{marginTop: "2vw", marginBottom: "2vw",}}>
+                  <Box sx={{ marginTop: "2vw", marginBottom: "2vw", }}>
                     <Typography variant="h6" component="h2" gutterBottom>
                       Twoje ogłoszenia:
                     </Typography>
                     {data.map((applications, index) => {
                       return (
-                        <ApplicationItem key={index} data={applications} svg={svg} token={token} advertNum={advertNumber}/>
+                        <ApplicationItem key={index} data={applications} svg={svg} token={token} advertNum={advertNumber} />
                       )
                     }
                     )
