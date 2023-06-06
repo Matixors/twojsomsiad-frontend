@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -25,7 +25,7 @@ const ExpandMore = styled((props) => {
 
 export default function ApplicationItem(props) {
     const [expanded, setExpanded] = React.useState(false);
-
+    const [user, setUser] = React.useState([]);
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -51,13 +51,28 @@ export default function ApplicationItem(props) {
             }
         })
     }
+    const options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+    };
+
+    React.useEffect(() => {
+        fetch(import.meta.env.VITE_BACKEND_URL + '/user/', options)
+            .then(response => response.json())
+            .then(response => setUser(response))
+            .catch(err => console.error(err));
+        
+    }, []);
 
 
     return (
         <div>
             <Card sx={{ width: "100%", height: "auto", marginBottom: "1%", }}>
                 <CardContent>
-                    Numer aplikacji: {data.ID}
+                    Uzytkownik {user.name} {user.surname} zgłosił się na wolontariat
                     <Button variant="outlined" sx={{ float: "right", margin: "1%" }} onClick={handleVolounteer}>Akceptuj</Button>
                 </CardContent>
             </Card>
